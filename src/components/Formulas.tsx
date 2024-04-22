@@ -1,13 +1,14 @@
 "use client";
 
-import mathjs from "mathjs";
+import { evaluate } from "mathjs";
 import { ChangeEvent, useState } from "react";
 
 export default function Formulas() {
   const [formula, setFormula] = useState("");
+  const [result, setResult] = useState(0);
 
-  const evaluate = () => {
-    console.log("evaluate");
+  const evaluateTheResult = () => {
+    setResult(evaluate(formula));
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,11 +29,18 @@ export default function Formulas() {
       />
 
       <button
-        onClick={evaluate}
+        onClick={evaluateTheResult}
         className="bg-blue-500 text-white px-4 py-2 rounded-md w-full"
       >
         Evaluate
       </button>
+
+      <div className="mt-4">
+        <h3 className="text-lg font-bold mb-2">Result:</h3>
+        <div className="border border-gray-300 px-2 py-1 rounded-md">
+          {result}
+        </div>
+      </div>
     </div>
   );
 }

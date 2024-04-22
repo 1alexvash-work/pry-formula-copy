@@ -1,4 +1,4 @@
-Add Zustand
+Add Zustand (Add it later in the separate Pull Request just to play with it)
 
 Add React Query
 
