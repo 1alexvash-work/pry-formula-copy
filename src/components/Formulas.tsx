@@ -11,6 +11,7 @@ const dynamicVariables = {
 export default function Formulas() {
   const [equation, setEquation] = useState("");
   const [result, setResult] = useState(0);
+  const [error, setError] = useState(false);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -18,9 +19,16 @@ export default function Formulas() {
   };
 
   const evaluateTheResult = () => {
-    const parsedEquation = parse(equation);
-    const solution = parsedEquation.evaluate(dynamicVariables);
-    setResult(solution);
+    try {
+      const parsedEquation = parse(equation);
+      const solution = parsedEquation.evaluate(dynamicVariables);
+
+      setResult(solution);
+      setError(false);
+    } catch (error) {
+      setError(true);
+      setResult(0);
+    }
   };
 
   return (
@@ -45,11 +53,17 @@ export default function Formulas() {
         onClick={evaluateTheResult}
         className={`bg-blue-500 text-white px-4 py-2 rounded-md w-full ${
           equation ? "" : "opacity-50 cursor-not-allowed"
-        }`}
+        } ${error ? "bg-red-500" : ""}`}
         disabled={!equation}
       >
         Evaluate
       </button>
+
+      {error && (
+        <div className="mt-4 text-red-500">
+          <p>Error occurred while evaluating the formula.</p>
+        </div>
+      )}
 
       <div className="mt-4">
         <h3 className="text-lg font-bold mb-2">Result:</h3>
