@@ -37,7 +37,10 @@ export default function Formulas() {
 
       <button
         onClick={evaluateTheResult}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md w-full"
+        className={`bg-blue-500 text-white px-4 py-2 rounded-md w-full ${
+          equation ? "" : "opacity-50 cursor-not-allowed"
+        }`}
+        disabled={!equation}
       >
         Evaluate
       </button>
