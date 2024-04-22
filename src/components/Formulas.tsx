@@ -1,19 +1,26 @@
 "use client";
 
-import { evaluate } from "mathjs";
+import { evaluate, parse } from "mathjs";
 import { ChangeEvent, useState } from "react";
 
-export default function Formulas() {
-  const [formula, setFormula] = useState("");
-  const [result, setResult] = useState(0);
+const dynamicVariables = {
+  x: 5,
+  y: 10,
+};
 
-  const evaluateTheResult = () => {
-    setResult(evaluate(formula));
-  };
+export default function Formulas() {
+  const [equation, setEquation] = useState("");
+  const [result, setResult] = useState(0);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setFormula(value);
+    setEquation(value);
+  };
+
+  const evaluateTheResult = () => {
+    const parsedEquation = parse(equation);
+    const solution = parsedEquation.evaluate(dynamicVariables);
+    setResult(solution);
   };
 
   return (
