@@ -1,8 +1,18 @@
 "use client";
 
+import mathjs from "mathjs";
+import { ChangeEvent, useState } from "react";
+
 export default function Formulas() {
+  const [formula, setFormula] = useState("");
+
   const evaluate = () => {
     console.log("evaluate");
+  };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setFormula(value);
   };
 
   return (
@@ -14,6 +24,7 @@ export default function Formulas() {
       <input
         type="text"
         className="border border-gray-300 px-2 py-1 rounded-md mb-4 w-full"
+        onChange={handleInputChange}
       />
 
       <button
