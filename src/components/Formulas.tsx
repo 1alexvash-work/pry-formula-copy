@@ -25,9 +25,15 @@ export default function Formulas() {
 
   return (
     <div className="p-4 shadow">
-      <h2 className="text-xl font-bold mb-4 ">Formulas</h2>
+      <h2 className="text-xl font-bold mb-4">Formulas</h2>
 
-      <div className="mb-4">Write down any formula you want</div>
+      <div className="p-4 mb-4 shadow text-sm text-gray-500">
+        <p className="font-bold mb-2">Instructions:</p>
+        <p>Write down any formula you want</p>
+        <p>Predefined values are x = 5, y = 10</p>
+        <p>You can use these variables in your formula</p>
+        <p>For example, x + y * 2</p>
+      </div>
 
       <input
         type="text"
