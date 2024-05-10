@@ -1,6 +1,6 @@
 "use client";
 
-import { evaluate, parse } from "mathjs";
+import { parse } from "mathjs";
 import { ChangeEvent, useState } from "react";
 
 const dynamicVariables = {
