@@ -1,29 +1,34 @@
-import create from "zustand";
+"use client";
 
-const useStore: any = create((set) => ({
-  count: 1,
-  inc: () => set((state) => ({ count: state.count + 1 })),
-}));
+import { useCounterStore } from "@/providers/counterStoreProvider";
+import React from "react";
 
-function Controls() {
-  const inc = useStore((state: any) => state.inc);
+const ZustandCounter = () => {
+  const { count, decrementCount, incrementCount } = useCounterStore(
+    (state) => state
+  );
 
-  return <button onClick={inc}>one up</button>;
-}
+  return (
+    <div className="flex justify-center my-4">
+      <div className="flex flex-col gap-1">
+        Count: {count}
+        <button
+          type="button"
+          onClick={decrementCount}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Decrement Count
+        </button>
+        <button
+          type="button"
+          onClick={incrementCount}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Increment Count
+        </button>
+      </div>
+    </div>
+  );
+};
 
-// function Counter() {
-//   const count = useStore((state):any => state.count)
-
-//   return <h1>{count}</h1>
-// }
-
-// export function Counter2() {
-//   const { count, inc } = useStore()
-
-//   return (
-//     <div className="counter">
-//       <span>{count}</span>
-//       <button onClick={inc}>one up</button>
-//     </div>
-//   )
-// }
+export default ZustandCounter;
